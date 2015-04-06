@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'subscriptions/:id/generate_invoice_as_pdf' => 'subscriptions#generate_invoice_as_pdf'
+  get 'subscriptions/download_invoices_as_pdf'
+
+  get 'subscriptions/generate_invoices'
+
+  get 'subscriptions/:id/generate_invoice' => 'subscriptions#generate_invoice'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :subscription_payments 

@@ -8,15 +8,7 @@ class Member < ActiveRecord::Base
   validates :member_email, :presence => true
   validates :member_inactive, :presence => true
   validates :member_vehicle, :presence => true
-  after_initialize do
-        if new_record?
-                maxId = Member.find_by_sql("SELECT member_id FROM members ORDER BY member_id DESC limit 1").first.try(:member_id)
-                if maxId.blank?
-                    maxId = 0
-                end
-                self.member_id = maxId+1
-        end
-  end
+
  rails_admin do
     list do
         field :member_id do

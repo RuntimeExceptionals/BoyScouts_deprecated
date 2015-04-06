@@ -6,10 +6,10 @@ class SubscriptionPayment < ActiveRecord::Base
   validates :amount_paid, :presence=>true
   validates :date_paid, :presence=>true
   validates :good_till, :presence=>true
-	 
+
   def subscription= value
     if value.kind_of?(String) and value.to_i.to_s == value
-      @subscription = Subscription.find_by_sql("select subscription_id from subscriptions where subscription_id = #{value.to_i}")			
+      @subscription = Subscription.find_by_sql("select subscription_id from subscriptions where subscription_id = #{value.to_i}")
       value = @subscription[0] 	
       super value	
     else

@@ -1,6 +1,6 @@
 class Subscription < ActiveRecord::Base
   belongs_to :route
-  
+
   validates :subscription_id, :uniqueness=>true
   validates :route, :presence => true
   validates :run_sequence, :presence => true
