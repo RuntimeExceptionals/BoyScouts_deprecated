@@ -92,10 +92,18 @@ class SubscriptionsController < ApplicationController
     end
 
     @subscriptions = invoices
+    @today = Date.today()
   end
 
+
   def download_invoices_as_pdf
-    kit = PDFKit.new("#{root_url}subscriptions/generate_invoices");
+
+    site_root_url = root_url
+    if site_root_url includes "https"
+      site_root_url.sub! 'https', 'http'
+    end
+
+    kit = PDFKit.new("#{site_root_url}subscriptions/generate_invoices", :page_size => 'Letter', :orientation=>'Portrait');
     pdf = kit.to_pdf
     send_data(pdf, :filename => "consolidated_invoices.pdf",  :type => "application/pdf")
   end
