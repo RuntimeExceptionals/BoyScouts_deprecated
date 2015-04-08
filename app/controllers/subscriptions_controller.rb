@@ -94,8 +94,10 @@ class SubscriptionsController < ApplicationController
     @subscriptions = invoices
   end
 
+
   def download_invoices_as_pdf
-    kit = PDFKit.new("#{root_url}subscriptions/generate_invoices");
+
+    kit = PDFKit.new("#{root_url}subscriptions/generate_invoices", :page_size => 'Letter', :orientation=>'Landscape');
     pdf = kit.to_pdf
     send_data(pdf, :filename => "consolidated_invoices.pdf",  :type => "application/pdf")
   end
