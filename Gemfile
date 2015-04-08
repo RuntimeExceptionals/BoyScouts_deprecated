@@ -54,6 +54,8 @@ end
 
 group :development, :test do
 	gem 'pg', '~> 0.17.1'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :production do
