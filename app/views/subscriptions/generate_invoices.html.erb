@@ -4,14 +4,30 @@
         padding-right:1em;
 
     }
+    .invoice{
+        padding:2em;
+    }
+    .invoice-inner{
+        border: 3px solid dodgerblue;
+    }
+    .billing_address{
+        margin-bottom: 2em;
+    }
+    .billing_address td{
+        padding-left:1em;
+    }
+    .payment-info{
+        margin-bottom:2em;
+    }
 </style>
 
 <% @subscriptions.each do |subscription|%>
     <div class="row">
-      <div class="col-md-6">
+      <div class="invoice">
+      <div class="col-md-6 invoice-inner">
 
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="company-info">
                     <span>
                       <h3>Boy Scouts of America</h3>
@@ -27,12 +43,12 @@
             <div class="company-info">
                     <span>
                         <h3>INVOICE</h3>
-                        <h4>::Need Date::</h4>
+                        <h4><%= @today %></h4>
                         <h4>Customer ID:<%= subscription.subscription_id %></h4>
                     </span>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
           </div>
         </div>
         <div class="row spacer" style="height:2em;"></div>
@@ -144,12 +160,13 @@
           </div>
         </div>
         <div class="row-fluid" style="padding:5em 0em 0em 1em;">
-          <div class="col-md-5" style="border:1px solid black;">
-            How to pay, comments, optional paypal information?
-
+          <div class="col-md-5 payment-info" style="border:2px solid darkblue;">
+            To pay this invoice please "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
           </div>
         </div>
       </div>
+        <div class="col-md-6"></div>
     </div>
-    <!--<div style="page-break-after:always !important;"></div>-->
+    </div>
+    <div style="page-break-after:always !important;"></div>
 <%end%>
