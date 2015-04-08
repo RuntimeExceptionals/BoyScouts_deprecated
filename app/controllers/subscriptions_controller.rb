@@ -98,12 +98,7 @@ class SubscriptionsController < ApplicationController
 
   def download_invoices_as_pdf
 
-    site_root_url = root_url
-    if site_root_url includes "https"
-      site_root_url.sub! 'https', 'http'
-    end
-
-    kit = PDFKit.new("#{site_root_url}subscriptions/generate_invoices", :page_size => 'Letter', :orientation=>'Portrait');
+    kit = PDFKit.new("http://boyscoutfd.herokuapp.com/subscriptions/generate_invoices", :page_size => 'Letter', :orientation=>'Portrait');
     pdf = kit.to_pdf
     send_data(pdf, :filename => "consolidated_invoices.pdf",  :type => "application/pdf")
   end
