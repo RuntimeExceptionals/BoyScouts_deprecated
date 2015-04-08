@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141115164746) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "activities", primary_key: "activity_id", force: true do |t|
     t.integer  "member_id"
     t.datetime "activity_date"
@@ -26,7 +23,7 @@ ActiveRecord::Schema.define(version: 20141115164746) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["member_id"], name: "index_activities_on_member_id", using: :btree
+  add_index "activities", ["member_id"], name: "index_activities_on_member_id"
 
   create_table "members", primary_key: "member_id", force: true do |t|
     t.string   "member_last_name"
@@ -58,8 +55,8 @@ ActiveRecord::Schema.define(version: 20141115164746) do
     t.datetime "updated_at"
   end
 
-  add_index "runs", ["member_id"], name: "index_runs_on_member_id", using: :btree
-  add_index "runs", ["route_id"], name: "index_runs_on_route_id", using: :btree
+  add_index "runs", ["member_id"], name: "index_runs_on_member_id"
+  add_index "runs", ["route_id"], name: "index_runs_on_route_id"
 
   create_table "subscription_payments", primary_key: "subscription_payment_id", force: true do |t|
     t.integer  "subscription_id"
@@ -72,7 +69,7 @@ ActiveRecord::Schema.define(version: 20141115164746) do
     t.datetime "updated_at"
   end
 
-  add_index "subscription_payments", ["subscription_id"], name: "index_subscription_payments_on_subscription_id", using: :btree
+  add_index "subscription_payments", ["subscription_id"], name: "index_subscription_payments_on_subscription_id"
 
   create_table "subscriptions", primary_key: "subscription_id", force: true do |t|
     t.integer  "route_id"
@@ -104,6 +101,6 @@ ActiveRecord::Schema.define(version: 20141115164746) do
     t.datetime "updated_at"
   end
 
-  add_index "subscriptions", ["route_id"], name: "index_subscriptions_on_route_id", using: :btree
+  add_index "subscriptions", ["route_id"], name: "index_subscriptions_on_route_id"
 
 end

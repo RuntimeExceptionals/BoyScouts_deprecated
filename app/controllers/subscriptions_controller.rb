@@ -61,6 +61,53 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def generate_invoice
+      @subscription = Subscription.find(params[:id])
+  end
+
+  def generate_invoices
+    subscriptions = Subscription.all()
+    today = Date.today()
+    invoices = []
+    subscriptions.each do |sub|
+       needs_invoice = true
+       payment = SubscriptionPayment.find_by_subscription_id(sub.subscription_id)
+       if payment.respond_to?("each")
+           payments.each do |payment|
+             if today < payment.good_till
+               needs_invoice = false
+             end
+           end
+       elsif payment.blank?
+         needs_invoice = true
+       else
+         if today < payment.good_till
+           needs_invoice = false
+         end
+       end
+
+      if needs_invoice
+        invoices.append(sub)
+      end
+    end
+
+    @subscriptions = invoices
+    @today = Date.today()
+  end
+
+
+  def download_invoices_as_pdf
+    root_url_str = "#{root_url}"
+    if root_url_str.include? "https"
+      root_url_str.sub! "https", "http"
+    end
+
+    kit = PDFKit.new(root_url_str + "subscriptions/generate_invoices", :page_size => 'Letter', :orientation=>'Portrait');
+    pdf = kit.to_pdf
+    send_data(pdf, :filename => "consolidated_invoices.pdf",  :type => "application/pdf")
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription

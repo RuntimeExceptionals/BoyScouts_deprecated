@@ -9,6 +9,10 @@ class Activity < ActiveRecord::Base
   after_initialize do
         if new_record?
                 maxId = Activity.find_by_sql("SELECT activity_id FROM activities ORDER BY activity_id DESC limit 1").first.try(:activity_id)
+                if maxId.blank?
+                    maxId = 0
+                end
+
                 self.activity_id = maxId+1
         end
   end

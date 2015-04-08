@@ -6,10 +6,10 @@ class SubscriptionPayment < ActiveRecord::Base
   validates :amount_paid, :presence=>true
   validates :date_paid, :presence=>true
   validates :good_till, :presence=>true
-	 
+
   def subscription= value
     if value.kind_of?(String) and value.to_i.to_s == value
-      @subscription = Subscription.find_by_sql("select subscription_id from subscriptions where subscription_id = #{value.to_i}")			
+      @subscription = Subscription.find_by_sql("select subscription_id from subscriptions where subscription_id = #{value.to_i}")
       value = @subscription[0] 	
       super value	
     else
@@ -50,6 +50,10 @@ class SubscriptionPayment < ActiveRecord::Base
 		#to_a method on time object retrieves all different time parametres	
 		self.date_paid = "#{values[5]}-#{values[4]}-#{values[3]}T23:59:59Z"
 		self.good_till = "2015-12-31T23:59:59Z"
+		if maxId.blank?
+                    maxId = 0
+                end
+
 		self.subscription_payment_id = maxId+1
 	end
   end 

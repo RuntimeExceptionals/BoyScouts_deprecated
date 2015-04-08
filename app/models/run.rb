@@ -12,6 +12,10 @@ class Run < ActiveRecord::Base
   after_initialize do
         if new_record?
                 maxId = Run.find_by_sql("SELECT run_id FROM runs ORDER BY run_id DESC limit 1").first.try(:run_id)
+		if maxId.blank?
+                    maxId = 0
+                end
+
                 self.run_id = maxId+1
         end
   end

@@ -1,6 +1,6 @@
 class Subscription < ActiveRecord::Base
   belongs_to :route
-  
+
   validates :subscription_id, :uniqueness=>true
   validates :route, :presence => true
   validates :run_sequence, :presence => true
@@ -30,6 +30,10 @@ class Subscription < ActiveRecord::Base
   after_initialize do
         if new_record?
                 maxId = Subscription.find_by_sql("SELECT subscription_id FROM subscriptions ORDER BY subscription_id DESC limit 1").first.try(:subscription_id)
+		if maxId.blank?
+                    maxId = 0
+                end
+
                 self.subscription_id = maxId+1
         end
   end

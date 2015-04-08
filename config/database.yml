@@ -12,18 +12,21 @@
 default: &default
   #adapter: mysql2
   adapter: postgresql	
+  #adapter: sqlite3
   #encoding: utf8
   encoding: unicode
-  host: localhost 	
+  #host: localhost 	
   pool: 5
+  timeout: 5000
   username: root
   password: mypass
-  socket: /var/run/mysqld/mysqld.sock
+  #socket: /var/run/mysqld/mysqld.sock
 
 development:
-  <<: *default
-  database: "rubyTest" 
-
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/development.sqlite3
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.

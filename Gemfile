@@ -6,7 +6,9 @@ gem 'rails', '4.1.6'
 # Use mysql as the database for Active Record
 #gem 'mysql2'
 #Use postgreSql as the database
-#gem 'pg', '~> 0.17.1'
+gem 'pg', '~> 0.17.1'
+#Use sqlite3 as database
+#gem 'sqlite3', '~> 1.3.10' 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -35,7 +37,10 @@ gem 'rails_admin', '~> 0.6.5'
 gem 'pdfkit'
 
 #gem for wkhtmlpdf
-gem 'wkhtmltopdf-heroku'
+#gem 'wkhtmltopdf-heroku'
+#gem 'wkhtmltopdf-heroku'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,9 +52,10 @@ gem 'wkhtmltopdf-heroku'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'wkhtmltopdf-heroku'
 
 group :development, :test do
-	gem 'pg', '~> 0.17.1'
+	gem 'sqlite3'
 end
 
 group :production do
