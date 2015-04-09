@@ -48,7 +48,7 @@ describe Subscription do
   end
   #it "is invalid without a last_letter_sent_date"
   #it "is invalid without a renewal_x0020_grp"
-  it "is invalid without a sold_x0020_By" do
+  it "is invalid without a sold_x0020_by" do
     Factory.build(:sub, sold_x0020_By: nil).should_not be_valid
   end
   it "is invalid without a subscription_amount" do
